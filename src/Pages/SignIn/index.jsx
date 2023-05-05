@@ -1,10 +1,12 @@
+import Layout from "../../Components/Layout"
+
 const SignIn = () => {
 
-  return (
-    <h1 className="bg-red-100">
-      Sign In
-    </h1>
-  )
+    return (
+        <Layout>
+            Sign In
+        </Layout>
+    )
 }
 
 export default SignIn

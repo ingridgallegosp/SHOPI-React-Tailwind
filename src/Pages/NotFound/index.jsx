@@ -1,10 +1,13 @@
+import Layout from "../../Components/Layout"
+
 const NotFound = () => {
 
-  return (
-    <h1 className="bg-red-100">
-      NotFound
-    </h1>
-  )
+    return (
+        <Layout>
+            Not found
+        </Layout>
+      
+    )
 }
 
 export default NotFound
