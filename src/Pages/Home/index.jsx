@@ -7,20 +7,29 @@ const Home = () => {
 
     useEffect(() => {
         const url = 'https://api.escuelajs.co/api/v1/products'
+        //const url = 'https://dummyjson.com/products'
         fetch(url)
             .then(response => response.json())
-            .then(data => setItems(data))
+            .then(data => {
+                setItems(data)
+                console.log(data)
+            })
             .catch((e) => console.log(e))
         
     }, []);
 
     return (
         <Layout>
-            {
-                items?.map(() => {
-                    return < Card/>
-                })
-            }
+            <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
+                {
+                    items?.map(item => {
+                        return < Card
+                            key={item.id}
+                            data={item}
+                        />
+                    })
+                }
+            </div> 
         </Layout> 
   )
 }
