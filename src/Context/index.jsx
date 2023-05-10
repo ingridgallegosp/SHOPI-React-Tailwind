@@ -6,10 +6,15 @@ export const ShopiCartContext = createContext();
 
 //el context se provee mediante un provideer
 export const ShopiCartProvider = ({ children }) => {
+    //Shopping Cart - Increment Qty
     const [count, setCount] = useState(0);
-    //console.log('count:', count)
+
+    //Product Detail - Open/Close
     const [isProductDetailOpen, setisProductDetailOpen] = useState(true);
     const toggleProductDetail = () => setisProductDetailOpen(!isProductDetailOpen)
+
+    //Product Detail - Show Product
+    const [productToShow, setProductToShow] = useState({}); //la info viene en forma de objeto
 
     
     return (
