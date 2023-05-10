@@ -6,7 +6,7 @@ import MyOrders from './Pages/MyOrders'
 import MyAccount from './Pages/MyAccount'
 import NotFound from './Pages/NotFound'
 import SignIn from './Pages/SignIn'
-import NavBar from './Components/NavBar/NavBar'
+import NavBar from './Components/NavBar'
 import './App.css'
 
 

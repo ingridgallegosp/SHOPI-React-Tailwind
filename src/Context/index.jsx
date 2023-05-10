@@ -8,6 +8,8 @@ export const ShopiCartContext = createContext();
 export const ShopiCartProvider = ({ children }) => {
     const [count, setCount] = useState(0);
     //console.log('count:', count)
+    const [isProductDetailOpen, setisProductDetailOpen] = useState(true);
+    const toggleProductDetail = () => setisProductDetailOpen(!isProductDetailOpen)
 
     
     return (
@@ -16,7 +18,10 @@ export const ShopiCartProvider = ({ children }) => {
         //va a tener un hijo(App) que necesita que lea count y tb que cualquier componente puede modificar ese valor
         <ShopiCartContext.Provider value={{
             count,
-            setCount
+            setCount,
+            isProductDetailOpen,
+            setisProductDetailOpen, 
+            toggleProductDetail
         }}>
             {children}
         </ShopiCartContext.Provider>
