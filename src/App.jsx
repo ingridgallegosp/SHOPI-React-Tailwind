@@ -7,6 +7,7 @@ import MyAccount from './Pages/MyAccount'
 import NotFound from './Pages/NotFound'
 import SignIn from './Pages/SignIn'
 import NavBar from './Components/NavBar'
+import CheckoutSideMenu from './Components/CheckoutSideMenu'
 import './App.css'
 
 
@@ -28,6 +29,7 @@ const App = () => {
             <BrowserRouter>
                 <AppRoutes></AppRoutes>
                 <NavBar></NavBar>
+                <CheckoutSideMenu/>
             </BrowserRouter>
         </ShopiCartProvider>
     )

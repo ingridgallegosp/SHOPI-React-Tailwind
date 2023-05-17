@@ -10,12 +10,21 @@ export const ShopiCartProvider = ({ children }) => {
     const [count, setCount] = useState(0);
 
     //Product Detail - Open/Close
-    const [isProductDetailOpen, setisProductDetailOpen] = useState(true);
-    const toggleProductDetail = () => setisProductDetailOpen(!isProductDetailOpen)
+    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+    //const toggleProductDetail = () => setisProductDetailOpen(!isProductDetailOpen)
+    const openProductDetail = () => setIsProductDetailOpen(true)
+    const closeProductDetail = () => setIsProductDetailOpen(false)
 
     //Product Detail - Show Product
-    const [productToShow, setProductToShow] = useState({}); //la info viene en forma de objeto
+    const [productToShow, setProductToShow] = useState({}); //la info del producto viene en forma de objeto
 
+    //Cart Product - Add products to cart
+    const [cartProducts, setCartProducts] = useState([]);
+    
+    //Checkout Side Menu - Open/Close
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
+    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
+    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
     
     return (
     //llamamos al proveedor del contexto y hacemos un wrapper - con el q provee la info del contexto
@@ -25,8 +34,19 @@ export const ShopiCartProvider = ({ children }) => {
             count,
             setCount,
             isProductDetailOpen,
-            setisProductDetailOpen, 
-            toggleProductDetail
+            setIsProductDetailOpen,
+            openProductDetail,
+            closeProductDetail,
+            //toggleProductDetail,
+            productToShow,
+            setProductToShow,
+            cartProducts,
+            setCartProducts,
+            isCheckoutSideMenuOpen,
+            setIsCheckoutSideMenuOpen,
+            openCheckoutSideMenu,
+            closeCheckoutSideMenu,
+
         }}>
             {children}
         </ShopiCartContext.Provider>

@@ -8,7 +8,6 @@ const Home = () => {
 
     useEffect(() => {
         const url = 'https://api.escuelajs.co/api/v1/products'
-        //const url = 'https://dummyjson.com/products'
         fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -29,7 +28,7 @@ const Home = () => {
                             data={item}
                         />
                     })
-                }
+                } 
             </div> 
             <ProductDetail></ProductDetail>
         </Layout> 
