@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { ShopiCartContext } from '../../Context'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import OrderCard from '../OrderCard'
+import { totalPrice } from '../../utils'
 import './styles.css'
 
 
@@ -11,9 +12,7 @@ const CheckoutSideMenu = () => {
     const handleDelete = (id) => {
         const filteredProducts = context.cartProducts.filter(product => product.id != id)
         context.setCartProducts(filteredProducts)
-
     }
-
 
     return (
 
@@ -38,7 +37,13 @@ const CheckoutSideMenu = () => {
                             />
                         )
                 })
-            }</div>
+                }</div>
+            <div className='px-6'>
+                <p className='flex justify-between items-center'>
+                    <span className='font-light'>Total Price:</span>
+                    <span className='font-medium text-2xl'>${ totalPrice(context.cartProducts) }</span>
+                </p>
+            </div>
            
         </aside>
     )
