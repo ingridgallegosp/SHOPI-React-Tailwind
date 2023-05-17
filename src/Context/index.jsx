@@ -20,6 +20,8 @@ export const ShopiCartProvider = ({ children }) => {
 
     //Cart Product - Add products to cart
     const [cartProducts, setCartProducts] = useState([]);
+    console.log('PRODUCTS IN CART: ', cartProducts)
+
     
     //Checkout Side Menu - Open/Close
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);

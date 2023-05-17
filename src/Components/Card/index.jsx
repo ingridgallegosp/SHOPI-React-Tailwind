@@ -19,7 +19,6 @@ const Card = (data) => {
 
         //añadir info del producto al array de productos del carrito
         context.setCartProducts([...context.cartProducts, productData])
-        console.log('PRODUCTS IN CART: ', context.cartProducts)
 
         //abrir cart
         context.closeProductDetail()
