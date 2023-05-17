@@ -17,18 +17,20 @@ const CheckoutSideMenu = () => {
                     className='h-6 w-6 text-black cursor-pointer'
                     onClick={()=>context.closeCheckoutSideMenu()} />
             </div>
-            {
-                context.cartProducts.map(product => {
-                    return (
-                        <OrderCard
-                            key={product.id}
-                            title={product.title}
-                            imgUrl={product.images}
-                            price={product.price}
-                        />
-                    )
+            <div className='px-6 overflow-y-scroll'>
+                {
+                    context.cartProducts.map(product => {
+                        return (
+                            <OrderCard
+                                key={product.id}
+                                title={product.title}
+                                imgUrl={product.images}
+                                price={product.price}
+                            />
+                        )
                 })
-            }
+            }</div>
+           
         </aside>
     )
 }
