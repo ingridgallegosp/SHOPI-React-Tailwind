@@ -7,6 +7,13 @@ import './styles.css'
 
 const CheckoutSideMenu = () => {
     const context = useContext(ShopiCartContext)
+    
+    const handleDelete = (id) => {
+        const filteredProducts = context.cartProducts.filter(product => product.id != id)
+        context.setCartProducts(filteredProducts)
+
+    }
+
 
     return (
 
@@ -23,9 +30,11 @@ const CheckoutSideMenu = () => {
                         return (
                             <OrderCard
                                 key={product.id}
+                                id={product.id}
                                 title={product.title}
                                 imgUrl={product.images}
                                 price={product.price}
+                                handleDelete={handleDelete}
                             />
                         )
                 })

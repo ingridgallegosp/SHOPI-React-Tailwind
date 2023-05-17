@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { ShopiCartContext } from '../../Context'
-import { PlusIcon } from '@heroicons/react/24/solid'
+import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid'
 
 const Card = (data) => {
     //vamos a decirle que lea el estado global
@@ -25,6 +25,26 @@ const Card = (data) => {
         context.openCheckoutSideMenu() 
     }
 
+    const renderIcon = (id) => {
+        const isInCart= context.cartProducts.filter(product=>product.id===id).length>0
+        if (isInCart) {
+            return (
+                <div
+                    className='absolute top-0 right-0 flex bg-black justify-center items-center bg-whie w-6 h-6 rounded-full m-2 p-1'>
+                    <CheckIcon className='h-6 w-6 text-white'></CheckIcon>
+                </div>
+            )
+        } else {
+            return (
+                <div
+                    className='absolute top-0 right-0 flex bg-white justify-center items-center bg-whie w-6 h-6 rounded-full m-2 p-1'
+                    onClick={ (event)=> addProductsToCart(event, data.data) }>
+                    <PlusIcon className='h-6 w-6 text-black'></PlusIcon>
+                </div>
+            )
+        }
+    }
+
     return (
         <div
             className='bg-white cursor-pointer w-56 h-60 rounded-lg'
@@ -34,11 +54,9 @@ const Card = (data) => {
                     {data.data.category.name}
                 </span>
                 <img className='w-full h-full object-cover rounded-lg' src={data.data.images[0]} alt={data.data.title} />
-                <div
-                    className='absolute top-0 right-0 flex bg-white justify-center items-center bg-whie w-6 h-6 rounded-full m-2 p-1'
-                    onClick={ (event)=> addProductsToCart(event, data.data) }>
-                    <PlusIcon className='h-6 w-6 text-black'></PlusIcon>
-                </div>
+                {
+                    renderIcon(data.data.id)
+                }
             </figure>
             <p className='flex justify-between'>
                 <span className='text-sm font-light'>{data.data.title}</span>
