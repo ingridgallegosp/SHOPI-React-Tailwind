@@ -7,6 +7,7 @@ const Card = (data) => {
     const context = useContext(ShopiCartContext)
 
     const showProduct = (productDetail) => {
+        context.closeCheckoutSideMenu() 
         context.openProductDetail()
         context.setProductToShow(productDetail)
     }
@@ -23,7 +24,6 @@ const Card = (data) => {
         //abrir cart
         context.closeProductDetail()
         context.openCheckoutSideMenu() 
-        
     }
 
     return (
