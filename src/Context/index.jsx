@@ -18,10 +18,12 @@ export const ShopiCartProvider = ({ children }) => {
     //Product Detail - Show Product
     const [productToShow, setProductToShow] = useState({}); //la info del producto viene en forma de objeto
 
-    //Cart Product - Add products to cart
+    //Shopping Cart - Add products to cart
     const [cartProducts, setCartProducts] = useState([]);
-    console.log('PRODUCTS IN CART: ', cartProducts)
-
+    //console.log('PRODUCTS IN CART: ', cartProducts)
+    
+    //Shopping Cart - Order
+    const [order, setOrder] = useState([]);
     
     //Checkout Side Menu - Open/Close
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
@@ -48,6 +50,8 @@ export const ShopiCartProvider = ({ children }) => {
             setIsCheckoutSideMenuOpen,
             openCheckoutSideMenu,
             closeCheckoutSideMenu,
+            order,
+            setOrder,
 
         }}>
             {children}
