@@ -25,6 +25,10 @@ const ProductDetail = () => {
                 <span className='font-medium text-md'>{ context.productToShow.title }</span>
                 <span className='font-light text-sm '>{ context.productToShow.description }</span>
             </p>
+            <p className='flex flex-col p-6'>
+                <img src='' alt=''/>
+                <span>Compartir</span>
+            </p>
 
         </aside>
     )
