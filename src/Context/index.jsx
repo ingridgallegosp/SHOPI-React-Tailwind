@@ -31,9 +31,47 @@ export const ShopiCartProvider = ({ children }) => {
     const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
 
 
-    // Get Products from API
+    // Save Products from API
     const [items, setItems] = useState(null);
 
+    //Search products by Title
+    const [searchByTitle, setSearchByTitle] = useState(null);
+    //console.log('search input',searchByTitle);
+    
+    //Search products by Category
+    const [searchByCategory, setSearchByCategory] = useState(null);
+    console.log('searchByCategory:', searchByCategory)
+
+    //FilterED  Items
+    const [filteredItems, setFilteredItems] = useState(null);
+    //console.log('filteredItems:', filteredItems)
+
+    //Filter by Items
+    const filterItemsByTitle = (items, searchByTitle) => {
+          return items?.filter(item=> item.title.toLowerCase().includes(searchByTitle.toLowerCase()))  
+    }
+
+    //Filter by Category
+    const filterItemsByCategory = (items, searchByCategory) => {
+          return items?.filter(item=> item.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))  
+    }
+
+    //Filter by Title and Category
+    const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
+        if (searchType === 'BY_TITLE') {
+            return filterItemsByTitle(items, searchByTitle)
+        }
+        if (searchType === 'BY_CATEGORY') {
+            return filterItemsByCategory(items, searchByCategory)
+        }
+        if (searchType === 'BY_TITLE_AND_CATEGORY') {
+            return filterItemsByTitle(items, searchByTitle).filter(item=> item.title.toLowerCase().includes(searchByTitle.toLowerCase())) 
+        }
+        if (!searchType) {
+            return items
+        }
+    }
+    //Get products from API
     useEffect(() => {
         const url = 'https://api.escuelajs.co/api/v1/products'
         fetch(url)
@@ -45,22 +83,23 @@ export const ShopiCartProvider = ({ children }) => {
             .catch((e) => console.log(e))
     }, []);
 
-    //Search products by Title
-    const [searchByTitle, setSearchByTitle] = useState(null);
-    //console.log('search input',searchByTitle);
+    //Filter by Items
+    /* useEffect(() => {
+        if (searchByTitle) setFilteredItems(filterItemsByTitle(items, searchByTitle))
+    }, [items, searchByTitle, searchByCategory]); */
 
-    //Filter
-    const [filteredItems, setFilteredItems] = useState(null);
-
-    const filterItemsByTitle = (items, searchByTitle) => {
-          return items?.filter(item=> item.title.toLowerCase().includes(searchByTitle.toLowerCase()))  
-    }
-    
+    //Filter by Title and Category
     useEffect(() => {
-        if(searchByTitle) setFilteredItems(filterItemsByTitle(items, searchByTitle))
-    }, [items, searchByTitle]);
-    //console.log('filterItemsfilteredItems',filteredItems)
+        if (searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_TITLE_AND_CATEGORY', items, searchByTitle, searchByCategory))
+        if (searchByTitle && !searchByCategory) setFilteredItems(filterBy('BY_TITLE', items, searchByTitle, searchByCategory))
+        if (!searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_CATEGORY', items, searchByTitle, searchByCategory))
+        if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory))
+    }, [items, searchByTitle, searchByCategory]);
+
+    console.log('filteredItems: ', filteredItems)
     
+
+
     return (
     //llamamos al proveedor del contexto y hacemos un wrapper - con el q provee la info del contexto
     //2 crear un proveedor que va a encapsular todos los componentes que tenemos en App para proveerlos de informacion
@@ -88,8 +127,10 @@ export const ShopiCartProvider = ({ children }) => {
             searchByTitle,
             setSearchByTitle,
             filteredItems,
-            setFilteredItems
-
+            setFilteredItems,
+            searchByCategory,
+            setSearchByCategory,
+            
         }}>
             {children}
         </ShopiCartContext.Provider>
