@@ -17,6 +17,16 @@ const Home = () => {
                     />
                 })
             ) 
+        /* }
+        if (context.filteredItems== null) {
+            return (
+                context.items?.map(item => {
+                    return < Card
+                        key={item.id}
+                        data={item}
+                    />
+                })
+            ) */
         } else {
             return (
                 <div className='flex justify-center items-center w-80'>Product not found :c</div>

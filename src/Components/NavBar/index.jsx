@@ -13,13 +13,15 @@ const NavBar = () => {
         <nav className='flex justify-between items-center fixed top-0 z-10 w-full py-5 px-8 text-sm font-light bg-white'>
             <ul className='flex items-center gap-3'>
                 <li className="font-semibold text-lg">
-                    <NavLink to={routes.HOME}>
+                    <NavLink to={routes.HOME}
+                        onClick={()=> context.setSearchByCategory(null)}>
                         Shopi
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
                         to={routes.HOME}
+                        onClick={()=> context.setSearchByCategory(null)}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }>
