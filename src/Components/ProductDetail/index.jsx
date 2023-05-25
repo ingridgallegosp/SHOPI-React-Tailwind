@@ -26,7 +26,7 @@ const ProductDetail = () => {
                     className='h-4 w-4 text-black cursor-pointer'
                      />
                 <span className='font-light text-sm'>Share</span>
-                <FacebookShareButton url=''>
+                <FacebookShareButton url='https://shopi-navy.vercel.app/'>
                     <FacebookIcon className='h-6 w-6 rounded-lg cursor-pointer ' />
                 </FacebookShareButton>
             </p>
