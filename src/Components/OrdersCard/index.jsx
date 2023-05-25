@@ -5,7 +5,7 @@ const OrdersCard = (props) => {
     const date = new Date().toDateString()
    
     return (
-        <div className='flex justify-between items-center mb-3 border border-black-50 shadow-md rounded-lg p-4 w-80'>
+        <div className='flex justify-between items-center mb-3 border border-gray shadow-md rounded-lg p-4 w-80'>
             <div className=' flex justify-between w-full'>
                 <div className='flex flex-col'>
                     <p className='flex flex-row items-center'> 

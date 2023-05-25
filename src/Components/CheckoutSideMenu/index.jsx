@@ -21,7 +21,7 @@ const CheckoutSideMenu = () => {
             totalProducts:context.cartProducts.length,
             totalPrice: totalPrice(context.cartProducts),
         }
-        console.log('order to add',orderToAdd)
+        //console.log('order to add',orderToAdd)
         context.setOrder([...context.order, orderToAdd])
         context.setCartProducts([])
         context.setCount(0)

@@ -1,38 +1,48 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
+import { ShopiCartContext } from '../../Context'
 import Layout from '../../Components/Layout'
 import Card from '../../Components/Card'
 import ProductDetail from '../../Components/ProductDetail'
 
 const Home = () => {
-    const [items, setItems] = useState(null);
+    const context = useContext(ShopiCartContext)
 
-    useEffect(() => {
-        const url = 'https://api.escuelajs.co/api/v1/products'
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                setItems(data)
-                console.log(data)
+    const renderView = () => {
+
+        return(
+            context.items?.map(item => {
+                return < Card
+                    key={item.id}
+                    data={item}
+                />
             })
-            .catch((e) => console.log(e))
-        
-    }, []);
+        )
+    }
+
+
 
     return (
         <Layout>
+            <div className='flex justify-center items-center w-80 mb-4'>
+                <h1 className='font-medium text-xl'>Exclusive Products</h1>
+            </div>
+
+            <input
+                type='text'
+                placeholder='Here you can search a product'
+                className='rounded-lg border border-gray shadow-md w-96 p-2 mb-5 focus: outline-none'
+                onChange={(event) => context.setSearchByTitle(event.target.value)}
+            />
+        
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
                 {
-                    items?.map(item => {
-                        return < Card
-                            key={item.id}
-                            data={item}
-                        />
-                    })
+                    renderView()
+                    
                 } 
-            </div> 
-            <ProductDetail></ProductDetail>
+            </div>
+            <ProductDetail/>
         </Layout> 
-  )
+    )
 }
 
 export default Home

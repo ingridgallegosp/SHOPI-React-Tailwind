@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 //estado global de la aplicacion-fuente de verdad a donde vamos a hacer request desde dif componentes de la app
 //1 crear un contexto
@@ -29,6 +29,25 @@ export const ShopiCartProvider = ({ children }) => {
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
     const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
+
+    //Search products by Title
+    const [searchByTitle, setSearchByTitle] = useState(null);
+    console.log(searchByTitle)
+
+
+    // Get Products from API
+    const [items, setItems] = useState(null);
+
+    useEffect(() => {
+        const url = 'https://api.escuelajs.co/api/v1/products'
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                setItems(data)
+                console.log(data)
+            })
+            .catch((e) => console.log(e))
+    }, []);
     
     return (
     //llamamos al proveedor del contexto y hacemos un wrapper - con el q provee la info del contexto
@@ -52,6 +71,10 @@ export const ShopiCartProvider = ({ children }) => {
             closeCheckoutSideMenu,
             order,
             setOrder,
+            items,
+            setItems,
+            searchByTitle,
+            setSearchByTitle
 
         }}>
             {children}
