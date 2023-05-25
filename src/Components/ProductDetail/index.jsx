@@ -1,8 +1,9 @@
 import { useContext } from 'react'
+import { FacebookShareButton, FacebookIcon } from 'react-share'
 import { ShopiCartContext } from '../../Context'
 import { XMarkIcon, ShareIcon } from '@heroicons/react/24/solid'
 import './styles.css'
-
+  
 
 const ProductDetail = () => {
     const context = useContext(ShopiCartContext)
@@ -18,13 +19,16 @@ const ProductDetail = () => {
                     onClick={()=>context.closeProductDetail()} />
             </div>
             <figure className='p-4'>
-                <img className='w-full h-full rounded-lg' src={ context.productToShow.images } alt={ context.productToShow.title } />
+                <img className='w-full h-full rounded-lg shadow-md' src={ context.productToShow.images } alt={ context.productToShow.title } />
             </figure>
-            <p className='flex flex-row p-1 ml-2'>
+            <p className='flex flex-row align-center gap-2 p-1 ml-2'>
                 <ShareIcon
                     className='h-4 w-4 text-black cursor-pointer'
                      />
-                <span className='font-light text-sm ml-2 '>Share</span>
+                <span className='font-light text-sm'>Share</span>
+                <FacebookShareButton url=''>
+                    <FacebookIcon className='h-6 w-6 rounded-lg cursor-pointer ' />
+                </FacebookShareButton>
             </p>
             <p className='flex flex-col p-2 ml-2'>
                 <span className='font-medium text-2xl mb-2'> $ {context.productToShow.price}</span>
