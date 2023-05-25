@@ -18,9 +18,10 @@ const CheckoutSideMenu = () => {
         const orderToAdd = {
             date:'01.02.2023',
             products: context.cartProducts,
-            totallProducts:context.cartProducts.lenght,
+            totalProducts:context.cartProducts.length,
             totalPrice: totalPrice(context.cartProducts),
         }
+        console.log('order to add',orderToAdd)
         context.setOrder([...context.order, orderToAdd])
         context.setCartProducts([])
         context.setCount(0)
@@ -29,7 +30,7 @@ const CheckoutSideMenu = () => {
 
     return (
 
-        <aside className={`${ context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}>
+        <aside className={`${ context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black shadow-xl rounded-lg bg-white`}>
             <div className='flex justify-between items-center p-6'>
                 <h2 className='font-medium text-xl'>My Order</h2>
                 <XMarkIcon
