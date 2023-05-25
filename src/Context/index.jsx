@@ -40,7 +40,7 @@ export const ShopiCartProvider = ({ children }) => {
     
     //Search products by Category
     const [searchByCategory, setSearchByCategory] = useState(null);
-    console.log('searchByCategory:', searchByCategory)
+    //console.log('searchByCategory:', searchByCategory)
 
     //FilterED  Items
     const [filteredItems, setFilteredItems] = useState(null);
@@ -95,8 +95,7 @@ export const ShopiCartProvider = ({ children }) => {
         if (!searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_CATEGORY', items, searchByTitle, searchByCategory))
         if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory))
     }, [items, searchByTitle, searchByCategory]);
-
-    console.log('filteredItems: ', filteredItems)
+    //console.log('filteredItems: ', filteredItems)
     
 
 

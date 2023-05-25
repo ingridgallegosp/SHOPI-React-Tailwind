@@ -8,29 +8,18 @@ const Home = () => {
     const context = useContext(ShopiCartContext)
 
     const renderView = () => {
-        if (context.searchByTitle?.length > 0) {
-            if (context.filteredItems?.length>0) {
-                return (
-                    context.filteredItems?.map(item => {
-                        return < Card
-                            key={item.id}
-                            data={item}
-                        />
-                    })
-                ) 
-            } else {
-                return (
-                    <div>Product not found :c</div>
-                )
-            }
-        } else {
-            return(
-                context.items?.map(item => {
+        if (context.filteredItems?.length>0) {
+            return (
+                context.filteredItems?.map(item => {
                     return < Card
                         key={item.id}
                         data={item}
                     />
                 })
+            ) 
+        } else {
+            return (
+                <div className='flex justify-center items-center w-80'>Product not found :c</div>
             )
         }
     }
