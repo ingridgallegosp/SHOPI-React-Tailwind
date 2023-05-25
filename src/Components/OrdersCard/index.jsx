@@ -20,7 +20,7 @@ const OrdersCard = (props) => {
             </div>
             <div className=''>
                 <p className='flex flex-row justify-start items-center'>
-                    <span className='font-medium text-2xl'>${totalPrice}</span>
+                    <span className='font-medium text-2xl w-20'>${totalPrice}</span>
                     <ChevronRightIcon className='h-7 w-7 text-black cursor-pointer'/>
                 </p>
             </div>
