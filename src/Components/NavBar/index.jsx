@@ -1,19 +1,25 @@
+import { useContext } from 'react'
 import { NavLink } from "react-router-dom"
+import { ShopiCartContext } from '../../Context'
+import { ShoppingCartIcon } from '@heroicons/react/24/solid'
+import routes from '../../utils/routes'
 
 const NavBar = () => {
     const activeStyle = 'underline underline-offset-4'
+    const context = useContext(ShopiCartContext)
+
     
     return (
-        <nav className='flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light'>
+        <nav className='flex justify-between items-center fixed top-0 z-10 w-full py-5 px-8 text-sm font-light bg-white'>
             <ul className='flex items-center gap-3'>
                 <li className="font-semibold text-lg">
-                    <NavLink to='/'>
+                    <NavLink to={routes.HOME}>
                         Shopi
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to='/'
+                        to={routes.HOME}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }>
@@ -22,7 +28,8 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/clothes'
+                        to={routes.CLOTHES}
+                        onClick={()=> context.setSearchByCategory('clothes')}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }>
@@ -31,7 +38,8 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/electronics'
+                        to={routes.ELECTRONICS}
+                        onClick={()=> context.setSearchByCategory('electronics')}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }>
@@ -40,7 +48,8 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/furniture'
+                        to={routes.FURNITURE}
+                        onClick={()=> context.setSearchByCategory('furniture')}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }>
@@ -49,7 +58,8 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/toys'
+                        to={routes.TOYS}
+                        onClick={()=> context.setSearchByCategory('toys')}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }>
@@ -58,7 +68,8 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/others'
+                        to={routes.OTHERS}
+                        onClick={()=> context.setSearchByCategory('others')}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }>
@@ -68,20 +79,20 @@ const NavBar = () => {
             </ul>
             <ul className='flex items-center gap-3'>
                 <li className='text-black/60'>
-                    ingrid@shopi.com
+                    hello@shopi.com
                 </li>
                 <li>
                     <NavLink
-                        to='/my-order'
+                        to={routes.MYORDER}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }>
-                        MyOrder
+                        My Order
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
-                        to='/my-account'
+                        to={routes.MYACCOUNT}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }>
@@ -90,15 +101,16 @@ const NavBar = () => {
                 </li>
                 <li>
                     <NavLink
-                        to='/sign-in'
+                        to={routes.SIGNIN}
                         className={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }>
                         Sign In
                     </NavLink>
                 </li>
-                <li>
-                        Carrito
+                <li className='flex items-center'>
+                    <ShoppingCartIcon className="h-6 w-6 text-black" />
+                    <div> {context.cartProducts.length} </div>
                 </li>
             </ul>
         </nav>
