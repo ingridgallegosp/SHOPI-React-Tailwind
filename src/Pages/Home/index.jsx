@@ -8,23 +8,37 @@ const Home = () => {
     const context = useContext(ShopiCartContext)
 
     const renderView = () => {
-
-        return(
-            context.items?.map(item => {
-                return < Card
-                    key={item.id}
-                    data={item}
-                />
-            })
-        )
+        if (context.searchByTitle?.length > 0) {
+            if (context.filteredItems?.length>0) {
+                return (
+                    context.filteredItems?.map(item => {
+                        return < Card
+                            key={item.id}
+                            data={item}
+                        />
+                    })
+                ) 
+            } else {
+                return (
+                    <div>Product not found :c</div>
+                )
+            }
+        } else {
+            return(
+                context.items?.map(item => {
+                    return < Card
+                        key={item.id}
+                        data={item}
+                    />
+                })
+            )
+        }
     }
-
-
 
     return (
         <Layout>
             <div className='flex justify-center items-center w-80 mb-4'>
-                <h1 className='font-medium text-xl'>Exclusive Products</h1>
+                <h1 className='font-medium text-xl'>What are you looking for?</h1>
             </div>
 
             <input
@@ -37,7 +51,6 @@ const Home = () => {
             <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
                 {
                     renderView()
-                    
                 } 
             </div>
             <ProductDetail/>

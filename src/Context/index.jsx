@@ -30,10 +30,6 @@ export const ShopiCartProvider = ({ children }) => {
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
     const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
 
-    //Search products by Title
-    const [searchByTitle, setSearchByTitle] = useState(null);
-    console.log(searchByTitle)
-
 
     // Get Products from API
     const [items, setItems] = useState(null);
@@ -44,10 +40,26 @@ export const ShopiCartProvider = ({ children }) => {
             .then(response => response.json())
             .then(data => {
                 setItems(data)
-                console.log(data)
+                //console.log(data)
             })
             .catch((e) => console.log(e))
     }, []);
+
+    //Search products by Title
+    const [searchByTitle, setSearchByTitle] = useState(null);
+    //console.log('search input',searchByTitle);
+
+    //Filter
+    const [filteredItems, setFilteredItems] = useState(null);
+
+    const filterItemsByTitle = (items, searchByTitle) => {
+          return items?.filter(item=> item.title.toLowerCase().includes(searchByTitle.toLowerCase()))  
+    }
+    
+    useEffect(() => {
+        if(searchByTitle) setFilteredItems(filterItemsByTitle(items, searchByTitle))
+    }, [items, searchByTitle]);
+    //console.log('filterItemsfilteredItems',filteredItems)
     
     return (
     //llamamos al proveedor del contexto y hacemos un wrapper - con el q provee la info del contexto
@@ -74,7 +86,9 @@ export const ShopiCartProvider = ({ children }) => {
             items,
             setItems,
             searchByTitle,
-            setSearchByTitle
+            setSearchByTitle,
+            filteredItems,
+            setFilteredItems
 
         }}>
             {children}
