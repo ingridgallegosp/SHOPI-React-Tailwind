@@ -2,10 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-    overflow-y: hidden; /* Hide vertical scrollbar */
 
-}
 /*scroll bar*/
 ::-webkit-scrollbar {
     width: 0.3rem;
