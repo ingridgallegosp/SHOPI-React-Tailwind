@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 *{
-    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden;
 
 }
 /*scroll bar*/
