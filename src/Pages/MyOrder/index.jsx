@@ -26,7 +26,7 @@ const MyOrder = () => {
                 <h1>My Order</h1>
             </div>
 
-            <div className='flex flex-col w-80 overflow-scroll'>
+            <div className='flex flex-col w-80'>
                  {
                     context.order?.[index]?.products.map(product => {
                         return (
