@@ -19,7 +19,7 @@ const MyOrder = () => {
     
     return (
         <Layout>
-             <div className='flex w-80 items-center justify-center relative mb-6'>
+             <div className='flex w-80 items-center justify-center relative mb-6 overflow-scroll'>
                 <Link  to='/my-orders'>
                     <ChevronLeftIcon className='h-6 w-6 text-black cursor-pointer' />
                 </Link>

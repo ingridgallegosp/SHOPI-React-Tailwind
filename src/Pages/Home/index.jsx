@@ -47,7 +47,7 @@ const Home = () => {
                 onChange={(event) => context.setSearchByTitle(event.target.value)}
             />
         
-            <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
+            <div className='grid gap-4 grid-cols-4 w-full overflow-scroll max-w-screen-lg'>
                 {
                     renderView()
                 } 
